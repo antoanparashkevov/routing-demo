@@ -8,12 +8,12 @@ import { showCatalog } from "./views/catalog.js";
 const main = document.querySelector("main");
 
 page("/", "/home");
-page("/home", (ctx) => decorateContext(ctx, showHome));
-page("/catalog", (ctx) => decorateContext(ctx, showCatalog));
+page("/home", decorateContext, showHome);
+page("/catalog", decorateContext, showCatalog);
 // using dynamic params
 page("/catalog/:id", showDetails);
-page("/about", (ctx) => decorateContext(ctx, showAbout));
-page('/test',t1,t2)
+page("/about", decorateContext, showAbout);
+page("/test", t1, t2);
 
 page.start();
 
@@ -24,15 +24,15 @@ function showDetails(ctx) {
   console.log(ctx.params.id);
 }
 
-function decorateContext(ctx, view) {
+function decorateContext(ctx, next) {
   ctx.render = render;
-  view(ctx);
+  next();
 }
-function t1(ctx,next){
-    ctx.myValue = 5;
-    next()//invoking next function
+function t1(ctx, next) {
+  ctx.myValue = 5;
+  next(); //invoking next function
 }
 
-function t2(ctx){
-    console.log(ctx)
+function t2(ctx) {
+  console.log(ctx);
 }
