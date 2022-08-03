@@ -7,12 +7,13 @@ import { showCatalog } from "./views/catalog.js";
 
 const main = document.querySelector("main");
 
+page(decorateContext)
 page("/", "/home");
-page("/home", decorateContext, showHome);
-page("/catalog", decorateContext, showCatalog);
+page("/home", showHome);
+page("/catalog", showCatalog);
 // using dynamic params
 page("/catalog/:id", showDetails);
-page("/about", decorateContext, showAbout);
+page("/about", showAbout);
 page("/test", t1, t2);
 
 page.start();
