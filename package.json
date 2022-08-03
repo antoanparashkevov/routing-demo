@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/antoanparashkevov/routing-demo#readme",
   "dependencies": {
+    "lit-html": "^2.2.7",
     "page": "^1.11.6"
   }
 }
