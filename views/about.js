@@ -4,6 +4,6 @@ const aboutTemplate = () => html`<h2>About page</h2>`;
 
 
 
-export function showAbout(render){
-    render(aboutTemplate())
+export function showAbout(ctx){
+    ctx.render(aboutTemplate())
 }

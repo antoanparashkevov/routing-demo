@@ -8,17 +8,25 @@ import { showCatalog } from "./views/catalog.js";
 const main = document.querySelector("main");
 
 page("/", "/home");
-page("/home", () => showHome(render));
-page("/catalog", () => showCatalog(render));
+page("/home", (ctx) =>{
+    ctx.render = render;
+    showHome(ctx)});
+page("/catalog", (ctx) => {
+    ctx.render = render;
+    showCatalog(ctx)
+});
 // using dynamic params
 page("/catalog/:id", showDetails);
-page("/about", () => showAbout(render));
+page("/about", (ctx) => {
+    ctx.render = render;
+    showAbout(ctx)
+});
 
 page.start();
 
 function render(templateResult) {
   litRender(templateResult, main);
 }
-function showDetails(){
-    console.log('showing details')
+function showDetails(ctx){
+    console.log(ctx.params.id)
 }

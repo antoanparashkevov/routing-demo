@@ -10,6 +10,6 @@ const catalogTemplate = () => html
 
 
 
-export function showCatalog(render){
-    render(catalogTemplate())
+export function showCatalog(ctx){
+    ctx.render(catalogTemplate())
 }
