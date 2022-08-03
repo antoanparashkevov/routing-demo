@@ -13,6 +13,7 @@ page("/catalog", (ctx) => decorateContext(ctx, showCatalog));
 // using dynamic params
 page("/catalog/:id", showDetails);
 page("/about", (ctx) => decorateContext(ctx, showAbout));
+page('/test',t1,t2)
 
 page.start();
 
@@ -26,4 +27,12 @@ function showDetails(ctx) {
 function decorateContext(ctx, view) {
   ctx.render = render;
   view(ctx);
+}
+function t1(ctx,next){
+    ctx.myValue = 5;
+    next()//invoking next function
+}
+
+function t2(ctx){
+    console.log(ctx)
 }
