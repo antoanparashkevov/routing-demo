@@ -5,6 +5,7 @@ import { showAbout } from "./views/about.js";
 import { showHome } from "./views/home.js";
 import { showCatalog } from "./views/catalog.js";
 import { showDetails } from "./views/details.js";
+import {showLogin} from './views/login.js'
 
 import * as api from './data/recipes.js';
 
@@ -19,6 +20,7 @@ page("/catalog", showCatalog);
 // using dynamic params
 page("/catalog/:id", showDetails);
 page("/about", showAbout);
+page("/login", showLogin);
 page("/test", t1, t2);
 
 page.start();
