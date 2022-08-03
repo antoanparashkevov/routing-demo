@@ -20,7 +20,11 @@
 
 <script>
     const main = document.querySelector('main')
-    window.addEventListener('hashchange', () => {
+
+    //Start Application
+    onChange()
+
+    function onChange() {
         // console.log(window.location.hash)
         const hash = window.location.hash
         switch (hash) {
@@ -34,7 +38,9 @@
                 main.innerHTML = `<h2>About page</h2>`
                 break;
         }
-    })
+    }
+
+    window.addEventListener('hashchange', onChange)
 </script>
 </body>
 </html>
