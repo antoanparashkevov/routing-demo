@@ -1,3 +1,4 @@
+import page from './node_modules/page/page.mjs'
 
 const views = {
     '/': () => `<h2>Home page</h2>`,
@@ -7,3 +8,6 @@ const views = {
 }
 const main = document.querySelector('main')
 
+page('/home',() => main.innerHTML = `<h2>Home page</h2>`);
+
+page.start();
