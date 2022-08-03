@@ -7,7 +7,7 @@ const catalogTemplate = (recipes) => html`
   ${repeat(recipes, (recipe) => recipe._id, recipeCard)}
 `;
 
-const recipeCard = (recipe) => html`<li>${recipe.name}</li>`;
+const recipeCard = (recipe) => html`<li><a href="/catalog/${recipe._id}">${recipe.name}</a></li>`;
 
 export async function showCatalog(ctx) {
   const recipes = await getAllRecipes();
