@@ -1,4 +1,4 @@
-import page from "../node_modules/page/page.mjs"
+import page from "../node_modules/page/page.mjs";
 
 import { render as litRender } from "../node_modules/lit-html/lit-html.js";
 import { showAbout } from "./views/about.js";
@@ -6,7 +6,7 @@ import { showHome } from "./views/home.js";
 import { showCatalog } from "./views/catalog.js";
 import { showDetails } from "./views/details.js";
 
-import * as api from './data/api.json';
+import * as api from './data/api.js';
 
 window.api = api;
 
