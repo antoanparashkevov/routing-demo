@@ -21,22 +21,33 @@
 <script>
     const main = document.querySelector('main')
 
+    const views = {
+        '#home': () => `<h2>Home page</h2>`,
+        '#catalog': ()=> `<h2>Catalog page</h2>`,
+        '#about': ()=>`<h2>About page</h2>`
+    }
+
     //Start Application
     onChange()
 
     function onChange() {
         // console.log(window.location.hash)
         const hash = window.location.hash
-        switch (hash) {
-            case "#home":
-                main.innerHTML = `<h2>Home page</h2>`
-                break;
-            case "#catalog":
-                main.innerHTML = `<h2>Catalog page</h2>`
-                break;
-            case "#about":
-                main.innerHTML = `<h2>About page</h2>`
-                break;
+        // switch (hash) {
+        //     case "#home":
+        //         main.innerHTML = `<h2>Home page</h2>`
+        //         break;
+        //     case "#catalog":
+        //         main.innerHTML = `<h2>Catalog page</h2>`
+        //         break;
+        //     case "#about":
+        //         main.innerHTML = `<h2>About page</h2>`
+        //         break;
+        // }
+        const currentView = views[hash]
+
+        if(typeof currentView === 'function'){
+            main.innerHTML = currentView();
         }
     }
 
