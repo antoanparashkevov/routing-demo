@@ -7,7 +7,7 @@ import { showCatalog } from "./views/catalog.js";
 import { showDetails } from "./views/details.js";
 import {showLogin} from './views/login.js'
 
-import * as api from './data/recipes.js';
+import * as api from './data/cars.js';
 
 window.api = api;
 

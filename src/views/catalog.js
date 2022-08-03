@@ -1,15 +1,15 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
 import { repeat } from "../../node_modules/lit-html/directives/repeat.js";
-import { getAllRecipes } from "../data/recipes.js";
+import { getAllCars } from "../data/cars.js";
 
-const catalogTemplate = (recipes) => html`
+const catalogTemplate = (cars) => html`
   <h2>Catalog page</h2>
-  ${repeat(recipes, (recipe) => recipe._id, recipeCard)}
+  ${repeat(cars, (car) => car._id, carCard)}
 `;
 
-const recipeCard = (recipe) => html`<li><a href="/catalog/${recipe._id}">${recipe.name}</a></li>`;
+const carCard = (car) => html`<li><a href="/catalog/${car._id}">${car.make} ${car.model}</a></li>`;
 
 export async function showCatalog(ctx) {
-  const recipes = await getAllRecipes();
-  ctx.render(catalogTemplate(recipes));
+  const cars = await getAllCars();
+  ctx.render(catalogTemplate(cars));
 }

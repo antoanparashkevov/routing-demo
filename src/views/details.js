@@ -1,21 +1,20 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
-import { getRecipeById } from "../data/recipes.js";
+import {html} from "../../node_modules/lit-html/lit-html.js";
+import {getCarById} from "../data/cars.js";
 
-const detailsTemplate = (recipe) => html`
-  <h1>Details</h1>
-  ${recipe ? html`
-  <h2>${recipe.name}</h2>
- ${recipe.ingredients.map(i=>html`<p>${i}</p>`)}
- ${recipe.steps.map(s=>html`<p>${s}</p>`)}
+const detailsTemplate = (car) => html`
+    <h1>Details</h1>
+    ${car ? html`
+        <h2>${car.make}</h2>
+        <p>${car.model}</p>
 
-  ` : html`Loading...`}
+    ` : html`Loading...`}
 `;
 
 export async function showDetails(ctx) {
-  const productId = ctx.params.id;
-  console.log(ctx.params.id);
-  ctx.render(detailsTemplate());
+    const carId = ctx.params.id;
+    console.log(ctx.params.id);
+    ctx.render(detailsTemplate());
 
-  const recipe = await getRecipeById(productId);
-  ctx.render(detailsTemplate(recipe));
+    const car = await getCarById(carId);
+    ctx.render(detailsTemplate(car));
 }
