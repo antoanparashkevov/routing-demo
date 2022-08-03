@@ -6,6 +6,10 @@ import { showHome } from "./views/home.js";
 import { showCatalog } from "./views/catalog.js";
 import { showDetails } from "./views/details.js";
 
+import * as api from './data/api.json';
+
+window.api = api;
+
 const main = document.querySelector("main");
 
 page(decorateContext)
