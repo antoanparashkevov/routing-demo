@@ -1,12 +1,12 @@
 import page from './node_modules/page/page.mjs'
+import { showAbout } from './views/about.js';
 import { showHome } from './views/home.js';
+import { showCatalog } from './views/catalog.js';
 
-const main = document.querySelector('main')
 
 page('/','/home');
-
 page('/home',showHome);
-page('/catalog',() => main.innerHTML = `<h2>Catalog page</h2>`);
-page('/about',() => main.innerHTML =`<h2>About page</h2>`);
+page('/catalog',showCatalog);
+page('/about',showAbout);
 
 page.start();
