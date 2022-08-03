@@ -10,10 +10,15 @@ const main = document.querySelector("main");
 page("/", "/home");
 page("/home", () => showHome(render));
 page("/catalog", () => showCatalog(render));
+// using dynamic params
+page("/catalog/:id", showDetails);
 page("/about", () => showAbout(render));
 
 page.start();
 
 function render(templateResult) {
   litRender(templateResult, main);
+}
+function showDetails(){
+    console.log('showing details')
 }
