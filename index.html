@@ -19,9 +19,22 @@
 </main>
 
 <script>
-    window.addEventListener('hashchange', () =>
-        console.log(window.location.hash)
-    )
+    const main = document.querySelector('main')
+    window.addEventListener('hashchange', () => {
+        // console.log(window.location.hash)
+        const hash = window.location.hash
+        switch (hash) {
+            case "#home":
+                main.innerHTML = `<h2>Home page</h2>`
+                break;
+            case "#catalog":
+                main.innerHTML = `<h2>Catalog page</h2>`
+                break;
+            case "#about":
+                main.innerHTML = `<h2>About page</h2>`
+                break;
+        }
+    })
 </script>
 </body>
 </html>
