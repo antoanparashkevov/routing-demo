@@ -1,10 +1,10 @@
 import page from "../node_modules/page/page.mjs";
-import { render as litRender } from "../node_modules/lit-html/lit-html.js";
+import {render as litRender} from "../node_modules/lit-html/lit-html.js";
 
-import { showAbout } from "./views/about.js";
-import { showHome } from "./views/home.js";
-import { showCatalog } from "./views/catalog.js";
-import { showDetails } from "./views/details.js";
+import {showAbout} from "./views/about.js";
+import {showHome} from "./views/home.js";
+import {showCatalog} from "./views/catalog.js";
+import {showDetails} from "./views/details.js";
 import {showLogin} from './views/login.js'
 
 import * as api from './data/cars.js';
@@ -15,6 +15,8 @@ const main = document.querySelector("main");
 
 //as global middleware to all routes
 page(decorateContext)
+//as a second global middleware to all routes
+page(parseQueryString)
 page("/", "/home");
 page("/home", showHome);
 page("/catalog", showCatalog);
@@ -35,6 +37,15 @@ function render(templateResult) {
 function decorateContext(ctx, next) {
   ctx.render = render;
   next();
+}
+
+function parseQueryString(ctx,next){
+  ctx.query = {}
+  if(ctx.querystring){
+    ctx.query = Object.fromEntries(ctx.querystring.split('&').map(p => p.split('=')))
+  }
+
+  next()
 }
 
 //just for test
