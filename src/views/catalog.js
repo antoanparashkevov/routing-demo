@@ -45,17 +45,18 @@ export async function showCatalog(ctx) {
 }
 
 async function catalogWrapper(ctx) {
-    const search = Number(ctx.query.search) || ''
+    const search = ctx.query.search || ''
     //if we don't have any page, this will return undefined, but undefined is falsy value and will display 1
     const page = Number(ctx.query.page) || 1
 
     //render empty string while we wait for response
     ctx.render(catalogTemplate([], page));
 
-    const {data, pages} = await getAllCars(page);
+    const {data, pages} = await getAllCars(search,page);
     return catalogTemplate(data, searchTemplate(search, createSubmitHandler(onSubmit)), pagerTemplate(page, pages));
 
     function onSubmit(data) {
+        //that automatically add ctx.query.search value
         ctx.page.redirect('/catalog?search=' + data.search)
     }
 }

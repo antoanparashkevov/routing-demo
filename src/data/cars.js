@@ -3,19 +3,25 @@ import * as api from "./api.js";
 const pageSize = 3;
 const endpoints = {
     cars: `/data/cars?pageSize=${pageSize}&offset=`,
-    size:'/data/cars?count',
+    size: '/data/cars?count',
     carById: '/data/cars/'
 };
 
-export async function getAllCars(page) {
-    const [data,size] = await Promise.all([
-        api.get(endpoints.cars + (page - 1) * pageSize),
-        api.get(endpoints.size),
+export async function getAllCars(search, page) {
+    let dataUrl = endpoints.cars + (page - 1) * pageSize
+    let sizeUrl = endpoints.size
+    if (search !== '') {
+        dataUrl += '&where=' + encodeURIComponent(`make LIKE "${search}"`)
+        sizeUrl += '&where=' + encodeURIComponent(`make LIKE "${search}"`)
+    }
+    const [data, size] = await Promise.all([
+        api.get(dataUrl),
+        api.get(sizeUrl),
 
     ])
     return {
         data,
-        pages:Math.ceil(size / pageSize)
+        pages: Math.ceil(size / pageSize)
     }
 }
 
