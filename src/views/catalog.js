@@ -1,6 +1,7 @@
 import {html, nothing} from "../../node_modules/lit-html/lit-html.js";
 import {repeat} from "../../node_modules/lit-html/directives/repeat.js";
 import {getAllCars} from "../data/cars.js";
+import {createSubmitHandler} from "../data/util.js";
 
 const catalogTemplate = (cars,searcher, pager) => html`
     <h2>Catalog page</h2>
@@ -44,9 +45,9 @@ export async function showCatalog(ctx) {
     ctx.render(catalogTemplate([], page));
 
     const {data, pages} = await getAllCars(page);
-    ctx.render(catalogTemplate(data,searchTemplate(onSubmit), pagerTemplate(page, pages)));
+    ctx.render(catalogTemplate(data,searchTemplate(createSubmitHandler(onSubmit)), pagerTemplate(page, pages)));
 
-    function onSubmit(){
+    function onSubmit(data){
 
     }
 }

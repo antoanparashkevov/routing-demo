@@ -8,6 +8,7 @@ import {showDetails} from "./views/details.js";
 import {showLogin} from './views/login.js'
 
 import * as api from './data/cars.js';
+import {parseQueryString} from "./data/util.js";
 //to get access through browser developer tool
 window.api = api;
 
@@ -39,17 +40,7 @@ function decorateContext(ctx, next) {
   next();
 }
 
-function parseQueryString(ctx,next){
-  ctx.query = {}
-  if(ctx.querystring){
-    ctx.query = Object.fromEntries(ctx.querystring.split('&').map(p => p.split('=')))
-    //or
-    // const query = Object.fromEntries(ctx.querystring.split('&').map(p => p.split('=')))
-    // Object.assign(ctx.query, query)
-  }
 
-  next()
-}
 
 //just for test
 function t1(ctx, next) {
