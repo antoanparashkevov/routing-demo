@@ -1,12 +1,16 @@
-import { html } from "../../node_modules/lit-html/lit-html.js";
+import { html,nothing } from "../../node_modules/lit-html/lit-html.js";
 import { repeat } from "../../node_modules/lit-html/directives/repeat.js";
 import { getAllCars } from "../data/cars.js";
 
 const catalogTemplate = (cars,page) => html`
   <h2>Catalog page</h2>
   
-  <a href="?page=${page-1}">&lt;Prev</a>
-  <a href="?page=${page+1}">Next &gt;</a>
+  <div>
+    ${page > 1 ? html`<a href="?page=${page-1}">&lt;Prev</a>` : nothing}
+    <span>Page ${page}</span>
+    <a href="?page=${page+1}">Next &gt;</a>
+  </div>
+  
   
   ${repeat(cars, (car) => car._id, carCard)}
 `;
