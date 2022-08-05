@@ -10,6 +10,8 @@ const catalogTemplate = (cars) => html`
 const carCard = (car) => html`<li><a href="/catalog/${car._id}">${car.make} ${car.model}</a></li>`;
 
 export async function showCatalog(ctx) {
+  //displaying query string into browser console.
+  console.log(ctx.querystring)
   const cars = await getAllCars();
   ctx.render(catalogTemplate(cars));
 }
