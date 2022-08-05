@@ -28,6 +28,6 @@ export async function showCatalog(ctx) {
   //render empty string while we wait for response
   ctx.render(catalogTemplate([],page));
 
-  const cars = await getAllCars(page);
+  const cars = await getAllCars.data(page);
   ctx.render(catalogTemplate(cars,page));
 }

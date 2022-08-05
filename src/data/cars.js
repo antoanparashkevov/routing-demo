@@ -14,7 +14,7 @@ export async function getAllCars(page) {
     ])
     return {
         data,
-        size
+        pageSize:Math.ceil(size / pageSize)
     }
 }
 
