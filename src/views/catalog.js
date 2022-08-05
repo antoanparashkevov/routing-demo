@@ -26,9 +26,9 @@ const pagerTemplate = (page, pages) => html
         </div>`
 
 
-const searchTemplate = (onSubmit)=>html
+const searchTemplate = (search,onSubmit)=>html
 `<form @submit="${onSubmit}">
-  <label for="search">Search: <input type="text" name="search"></label>
+  <label for="search">Search: <input type="text" name="search" .value="${search}"></label>
   <input type='submit' value="Search">
   
 </form>`
@@ -40,12 +40,13 @@ export async function showCatalog(ctx) {
 
     //if we don't have any page, this will return undefined, but undefined is falsy value and will display 1
     const page = Number(ctx.query.page) || 1
+  const search = Number(ctx.query.search) || ''
 
     //render empty string while we wait for response
     ctx.render(catalogTemplate([], page));
 
     const {data, pages} = await getAllCars(page);
-    ctx.render(catalogTemplate(data,searchTemplate(createSubmitHandler(onSubmit)), pagerTemplate(page, pages)));
+    ctx.render(catalogTemplate(data,searchTemplate(search,createSubmitHandler(onSubmit)), pagerTemplate(page, pages)));
 
     function onSubmit(data){
     ctx.page.redirect('?search' + data.search)
