@@ -2,13 +2,16 @@ import { html,nothing } from "../../node_modules/lit-html/lit-html.js";
 import { repeat } from "../../node_modules/lit-html/directives/repeat.js";
 import { getAllCars } from "../data/cars.js";
 
-const catalogTemplate = (cars,page) => html`
+const catalogTemplate = (cars,page,pages) => html`
   <h2>Catalog page</h2>
   
   <div>
     ${page > 1 ? html`<a href="?page=${page-1}">&lt;Prev</a>` : nothing}
+    
     <span>Page ${page}</span>
-    <a href="?page=${page+1}">Next &gt;</a>
+   
+    ${page < pages ? html`<a href="?page=${page+1}">Next &gt;</a>` : nothing}
+
   </div>
   
   
@@ -28,6 +31,6 @@ export async function showCatalog(ctx) {
   //render empty string while we wait for response
   ctx.render(catalogTemplate([],page));
 
-  const cars = await getAllCars.data(page);
-  ctx.render(catalogTemplate(cars,page));
+  const {data,pages} = await getAllCars(page);
+  ctx.render(catalogTemplate(data,page,pages));
 }

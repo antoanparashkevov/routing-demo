@@ -1,6 +1,6 @@
 import * as api from "./api.js";
 
-const pageSize = 4;
+const pageSize = 3;
 const endpoints = {
     cars: `/data/cars?pageSize=${pageSize}&offset=`,
     size:'/data/cars?count',
@@ -8,13 +8,15 @@ const endpoints = {
 };
 
 export async function getAllCars(page) {
-    const [data,size] = Promise.all([
+    const [data,size] = await Promise.all([
         api.get(endpoints.cars + (page - 1) * pageSize),
         api.get(endpoints.size),
+
     ])
+    console.log(size)
     return {
         data,
-        pageSize:Math.ceil(size / pageSize)
+        pages:Math.ceil(size / pageSize)
     }
 }
 
