@@ -2,9 +2,9 @@ import {html, nothing} from "../../node_modules/lit-html/lit-html.js";
 import {repeat} from "../../node_modules/lit-html/directives/repeat.js";
 import {getAllCars} from "../data/cars.js";
 
-const catalogTemplate = (cars, pager) => html`
+const catalogTemplate = (cars,searcher, pager) => html`
     <h2>Catalog page</h2>
-
+    ${searcher}
     ${pager}
   
     ${repeat(cars, (car) => car._id, carCard)}
@@ -24,6 +24,14 @@ const pagerTemplate = (page, pages) => html
 
         </div>`
 
+
+const searchTemplate = (onSubmit)=>html
+`<form @submit="${onSubmit}">
+  <label for="search">Search: <input type="text" name="search"></label>
+  <input type='submit' value="Search">
+  
+</form>`
+
 export async function showCatalog(ctx) {
     // displaying query string into browser console.
     // console.log(ctx.querystring)
@@ -36,5 +44,9 @@ export async function showCatalog(ctx) {
     ctx.render(catalogTemplate([], page));
 
     const {data, pages} = await getAllCars(page);
-    ctx.render(catalogTemplate(data, pagerTemplate(page, pages)));
+    ctx.render(catalogTemplate(data,searchTemplate(onSubmit), pagerTemplate(page, pages)));
+
+    function onSubmit(){
+
+    }
 }
