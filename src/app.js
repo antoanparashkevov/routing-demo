@@ -43,6 +43,9 @@ function parseQueryString(ctx,next){
   ctx.query = {}
   if(ctx.querystring){
     ctx.query = Object.fromEntries(ctx.querystring.split('&').map(p => p.split('=')))
+    //or
+    // const query = Object.fromEntries(ctx.querystring.split('&').map(p => p.split('=')))
+    // Object.assign(ctx.query, query)
   }
 
   next()
