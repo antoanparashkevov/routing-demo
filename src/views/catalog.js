@@ -49,6 +49,6 @@ export async function showCatalog(ctx) {
     ctx.render(catalogTemplate(data,searchTemplate(search,createSubmitHandler(onSubmit)), pagerTemplate(page, pages)));
 
     function onSubmit(data){
-    ctx.page.redirect('?search' + data.search)
+    ctx.page.redirect('/catalog/?search=' + data.search)
     }
 }
