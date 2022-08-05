@@ -13,7 +13,6 @@ export async function getAllCars(page) {
         api.get(endpoints.size),
 
     ])
-    console.log(size)
     return {
         data,
         pages:Math.ceil(size / pageSize)
