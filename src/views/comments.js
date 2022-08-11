@@ -2,7 +2,7 @@ import {html} from "../../node_modules/lit-html/lit-html.js";
 import {repeat} from "../../node_modules/lit-html/directives/repeat.js";
 import {until} from "../../node_modules/lit-html/directives/until.js";
 import {createSubmitHandler} from "../data/util.js";
-import {getCommentsById} from "../data/comments.js";
+import {createComment, getCommentsById} from "../data/comments.js";
 
 
 const commentsTemplate = (comments, commentForm) =>
@@ -35,7 +35,11 @@ async function  commentsWrapper(ctx) {
     const comments = await getCommentsById(carId)
     return commentsTemplate(comments, commentForm(createSubmitHandler(onSubmit)))
 
-    async function onSubmit(data) {
-        console.log(data)
+    async function onSubmit(data,form) {
+      await createComment(carId,data.content)
+        form.reset()
+        ctx.page.redirect('/details/' + carId)
+
+
     }
 }
