@@ -15,12 +15,13 @@ export function parseQueryString(ctx,next){
 export function createSubmitHandler(callback){
     return function(event){
         event.preventDefault()
+        const form = event.target
         const formData = new FormData(event.target)
         // console.log(formData)
         // console.log(formData.entries())
         // console.log(Object.fromEntries(formData.entries()))
         const asObject = Object.fromEntries(formData.entries())
-        callback(asObject)
+        callback(asObject,form)
 
     }
 }
