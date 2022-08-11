@@ -1,6 +1,8 @@
 import {html} from "../../node_modules/lit-html/lit-html.js";
 import {repeat} from "../../node_modules/lit-html/directives/repeat.js";
+import {until} from "../../node_modules/lit-html/directives/until.js";
 import {createSubmitHandler} from "../data/util.js";
+import {getCommentsById} from "../data/comments.js";
 
 
 const commentsTemplate = (comments, commentForm) =>
@@ -21,15 +23,17 @@ const commentForm = (onSubmit) =>
         `
             <form @submit=${onSubmit}>
                 <textarea name="comment" value="Post a comment"></textarea>
-                <input type='submit'>
+                <input type='submit' value="Submit">
             </form>`
 
 export function commentsView(ctx) {
-    return commentsWrapper(ctx)
+    return until(commentsWrapper(ctx),'Loading comments')
 }
 
-function commentsWrapper(ctx) {
-    return commentsTemplate([], commentForm(createSubmitHandler(onSubmit)))
+async function  commentsWrapper(ctx) {
+    const carId = ctx.params.id
+    const comments = await getCommentsById(carId)
+    return commentsTemplate(comments, commentForm(createSubmitHandler(onSubmit)))
 
     async function onSubmit(data) {
         console.log(data)
