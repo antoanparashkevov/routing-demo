@@ -6,6 +6,12 @@ async function request(method,url,data){
     headers: {}
     }
 
+    const userData = JSON.parse(sessionStorage.getItem('userData'))
+
+    if(userData){
+        options.headers['X-Authorization'] = userData.accessToken
+    }
+
     if(data){
         options.headers['Content-Type'] = 'application/json',
         options.body = JSON.stringify(data)
