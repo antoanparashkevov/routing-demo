@@ -22,7 +22,7 @@ const commentForm = (onSubmit) =>
     html
         `
             <form @submit=${onSubmit}>
-                <textarea name="comment" value="Post a comment"></textarea>
+                <textarea name="content" value="Post a comment"></textarea>
                 <input type='submit' value="Submit">
             </form>`
 
@@ -38,8 +38,7 @@ async function  commentsWrapper(ctx) {
     async function onSubmit(data,form) {
       await createComment(carId,data.content)
         form.reset()
-        ctx.page.redirect('/details/' + carId)
-
+        ctx.page.redirect('/catalog/' + carId)
 
     }
 }

@@ -7,7 +7,6 @@ async function request(method,url,data){
     }
 
     const userData = JSON.parse(sessionStorage.getItem('userData'))
-
     if(userData){
         options.headers['X-Authorization'] = userData.accessToken
     }
