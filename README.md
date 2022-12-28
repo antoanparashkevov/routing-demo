@@ -3,8 +3,8 @@ A very simple application with learning purposes only. Hosted by the `http-serve
 Run `npm i` to install all dependencies and then `npm start` to start the http development server. To start the learning server provided by Softuni, go to <strong>server path</strong> then type `node server.js`
 
 # Visiting
-You can visit the project from here: http://localhost:3000
-You can access the server from here: http://localhost:3030/admin
+- You can visit the project from here: http://localhost:3000
+- You can access the server from here: http://localhost:3030/admin
 
 # About
 
